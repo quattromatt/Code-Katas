@@ -31,6 +31,7 @@ public class AnagramGroup {
 		// Must be a match!
 		m_words.add(word);
 		
+		
 		return true;
 	}
 	

@@ -12,7 +12,7 @@ public class Main {
 		
 		long finish = System.currentTimeMillis();
 		
-		System.out.println("PROCESS TIME FOR " + finder.getNumberOfWordsProcessed() + " WORDS: " + (finish - start) + " ms");
+		System.out.println("PROCESS TIME FOR " + finder.getNumberOfWordsProcessed() + " WORDS: " + (finish - start) + " ms!");
 		
 		finder.info();
 	}
