@@ -38,19 +38,19 @@ public class CheckOutTest {
 		
 		Assert.assertEquals(0, checkout.total(), 0);
 		
-		checkout.scan('A');
+		checkout.scan("A");
 		Assert.assertEquals(50, checkout.total(), 0);
 		
-		checkout.scan('B');
+		checkout.scan("B");
 		Assert.assertEquals(80, checkout.total(), 0);
 		
-		checkout.scan('A');
+		checkout.scan("A");
 		Assert.assertEquals(130, checkout.total(), 0);
 		
-		checkout.scan('A');
+		checkout.scan("A");
 		Assert.assertEquals(160, checkout.total(), 0);
 		
-		checkout.scan('B');
+		checkout.scan("B");
 		Assert.assertEquals(175, checkout.total(), 0);
 	}
 	
@@ -62,7 +62,7 @@ public class CheckOutTest {
 		// Loop through the items and scan them
 		for (int i = 0; i < items.length(); i++) {
 			char item = items.charAt(i);
-			checkout.scan(item);
+			checkout.scan("" + item);
 		}
 		
 		// Return the total 
