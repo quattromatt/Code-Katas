@@ -2,14 +2,14 @@ package com.codekata.backtothecheckout;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.support.FileSystemXmlApplicationContext;
 import org.springframework.context.support.GenericApplicationContext;
 
 public class Bootstrap {
 
 	private static ApplicationContext m_context;
 
-//	private static final String APPLICATION_CONTEXT_FILE = "spring/backtothecheckout/application-main-context.xml";
-	private static final String APPLICATION_CONTEXT_FILE = "src/main/resources/spring/backtothecheckout/application-main-context.xml";
+	private static final String APPLICATION_CONTEXT_FILE = "src/main/resources/spring/application-main-context.xml";
 
 	private static final String[] SPRING_FILES = { APPLICATION_CONTEXT_FILE };
 	public static void init() {
@@ -27,9 +27,10 @@ public class Bootstrap {
 			resourceIndex++;
 		}
 
-		boolean refresh = true;
+//		boolean refresh = true;
 
-		m_context = new ClassPathXmlApplicationContext(resources, refresh, baseContext);
+//		m_context = new ClassPathXmlApplicationContext(resources, refresh, baseContext);
+		m_context = new FileSystemXmlApplicationContext(APPLICATION_CONTEXT_FILE);
 	}
 
 	public static ApplicationContext getContext() {
