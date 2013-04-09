@@ -4,16 +4,15 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.codekata.backtothecheckout.ICheckItemsOut;
-import com.codekata.backtothecheckout.IPriceItems;
+import com.codekata.backtothecheckout.ITotalItemAmounts;
 
 public class ItemCheckOuter implements ICheckItemsOut {
 
-	private Map<String, Integer> m_items;
-	private IPriceItems m_pricingRules;
+	private Map<String, Integer> m_items = new HashMap<>();
+	private ITotalItemAmounts m_itemAmountTotaller;
 
-	public ItemCheckOuter(IPriceItems pricingRules) {
-		m_items = new HashMap<>();
-		m_pricingRules = pricingRules;
+	public ItemCheckOuter(ITotalItemAmounts itemAmountTotaller) {
+		m_itemAmountTotaller = itemAmountTotaller;
 	}
 	
 	@Override
@@ -30,10 +29,6 @@ public class ItemCheckOuter implements ICheckItemsOut {
 
 	@Override
 	public double total() {
-		
-		// TODO - Inject this
-		ItemAmountTotaller itemAmountTotaller = new ItemAmountTotaller();
-		return itemAmountTotaller.totalItems(m_items, m_pricingRules);
+		return m_itemAmountTotaller.totalItems(m_items);
 	}
-
 }

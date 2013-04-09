@@ -1,22 +1,23 @@
 package com.codekata.backtothecheckout.test;
 
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.support.AnnotationConfigContextLoader;
 
-import com.codekata.backtothecheckout.Bootstrap;
+import com.codekata.backtothecheckout.Config;
 import com.codekata.backtothecheckout.ICheckItemsOut;
 import com.codekata.backtothecheckout.ICreateItemCheckOuters;
-import com.codekata.backtothecheckout.IPriceItems;
-import com.codekata.backtothecheckout.impl.ItemCheckOuterFactory;
 
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(classes=Config.class, loader=AnnotationConfigContextLoader.class)
 public class CheckOutTest {
 
-	@Before
-	public void init() throws Exception {
-		
-		Bootstrap.init();
-	}
+	@Autowired
+	public ICreateItemCheckOuters itemCheckOuterFactory;
 	
 	@Test
 	public void testTotals() throws Exception {
@@ -77,17 +78,11 @@ public class CheckOutTest {
 		return checkout.total();
 	}
 	
+	/**
+	 * Get an ICheckItemsOut from the factory
+	 * @return
+	 */
 	private ICheckItemsOut getCheckOut() {
-		
-		// Get a CheckOut factory
-		ICreateItemCheckOuters factory = new ItemCheckOuterFactory();
-
-		// Create a checkout
-		return factory.create(getPricingRules());
-	}
-	
-	private IPriceItems getPricingRules() {
-		// TODO
-		return null;
+		return itemCheckOuterFactory.create();
 	}
 }

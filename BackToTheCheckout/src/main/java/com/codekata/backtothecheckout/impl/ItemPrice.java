@@ -8,7 +8,7 @@ public class ItemPrice implements IPriceAnItem {
 	private int m_quantity = 0;
 	private double m_price = 0;
 	
-	public ItemPrice(String sku, int quantity, int price) {
+	public ItemPrice(String sku, int quantity, double price) {
 		m_sku = sku;
 		m_quantity = quantity;
 		m_price = price;

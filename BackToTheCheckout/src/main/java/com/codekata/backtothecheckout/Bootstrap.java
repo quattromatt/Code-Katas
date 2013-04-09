@@ -1,36 +1,16 @@
 package com.codekata.backtothecheckout;
 
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.context.support.FileSystemXmlApplicationContext;
-import org.springframework.context.support.GenericApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class Bootstrap {
 
-	private static ApplicationContext m_context;
+	private static AnnotationConfigApplicationContext m_context;
 
-	private static final String APPLICATION_CONTEXT_FILE = "src/main/resources/spring/application-main-context.xml";
-
-	private static final String[] SPRING_FILES = { APPLICATION_CONTEXT_FILE };
 	public static void init() {
 
-		// Base context
-		GenericApplicationContext baseContext = new GenericApplicationContext();
-		baseContext.refresh();
-
-		int numResources = SPRING_FILES.length;
-		String[] resources = new String[numResources];
-		int resourceIndex = 0;
-
-		for (int i = 0; i < SPRING_FILES.length; i++) {
-			resources[resourceIndex] = SPRING_FILES[i];
-			resourceIndex++;
-		}
-
-//		boolean refresh = true;
-
-//		m_context = new ClassPathXmlApplicationContext(resources, refresh, baseContext);
-		m_context = new FileSystemXmlApplicationContext(APPLICATION_CONTEXT_FILE);
+		// Create an annotation based context
+		m_context = new AnnotationConfigApplicationContext(Config.class);
 	}
 
 	public static ApplicationContext getContext() {
