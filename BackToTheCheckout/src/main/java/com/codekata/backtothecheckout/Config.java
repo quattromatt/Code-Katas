@@ -7,7 +7,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
-import com.codekata.backtothecheckout.impl.ItemPrice;
+import com.codekata.backtothecheckout.impl.SimpleMultipleItemPrice;
+import com.codekata.backtothecheckout.impl.SingleItemPrice;
 
 @Configuration
 @ComponentScan("com.codekata.backtothecheckout")
@@ -21,10 +22,10 @@ public class Config {
 		
 		Map<String, IPriceAnItem> regularPrices = new HashMap<>();
 		
-		regularPrices.put("A", new ItemPrice("A", 1, 50.00));
-		regularPrices.put("B", new ItemPrice("B", 1, 30.00));
-		regularPrices.put("C", new ItemPrice("C", 1, 20.00));
-		regularPrices.put("D", new ItemPrice("D", 1, 15.00));
+		regularPrices.put("A", new SingleItemPrice(50.00));
+		regularPrices.put("B", new SingleItemPrice(30.00));
+		regularPrices.put("C", new SingleItemPrice(20.00));
+		regularPrices.put("D", new SingleItemPrice(15.00));
 		
 		return regularPrices;
 	}
@@ -34,8 +35,8 @@ public class Config {
 		
 		Map<String, IPriceAnItem> salePrices = new HashMap<>();
 		
-		salePrices.put("A", new ItemPrice("A", 3, 130.00));
-		salePrices.put("B", new ItemPrice("B", 2, 45.00));
+		salePrices.put("A", new SimpleMultipleItemPrice(3, 130.00));
+		salePrices.put("B", new SimpleMultipleItemPrice(2, 45.00));
 		
 		return salePrices;
 	}

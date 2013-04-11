@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 import com.codekata.backtothecheckout.IPriceAnItem;
 import com.codekata.backtothecheckout.IPriceItems;
+import com.codekata.backtothecheckout.IReturnItemsPriced;
 import com.codekata.backtothecheckout.ITotalItemAmounts;
 
 @Component
@@ -39,18 +40,30 @@ public class ItemAmountTotaller implements ITotalItemAmounts {
 		
 		double totalPrice = 0;
 		
-		while (quantity > 0) {
-			
-			// Decide which price to use for this set of items
-			IPriceAnItem price = (salesPrice != null && salesPrice.getQuantity() <= quantity) ?
-				salesPrice : regularPrice;
-
-			// Now increment the total
-			totalPrice = totalPrice += price.getPrice();
-			
-			// ...and decrement the quantity we're totalling
-			quantity -= price.getQuantity();
+		// Check any sales price
+		if (salesPrice != null) {
+			IReturnItemsPriced itemsPricedOnSale = salesPrice.priceItems(quantity);
+			quantity -= itemsPricedOnSale.getQuantity();
+			totalPrice += itemsPricedOnSale.getPrice();
 		}
+		
+		// Check the regular price
+		IReturnItemsPriced itemsPriced = regularPrice.priceItems(quantity);
+		quantity -= itemsPriced.getQuantity();
+		totalPrice += itemsPriced.getPrice();
+		
+//		while (quantity > 0) {
+//			
+//			// Decide which price to use for this set of items
+//			IPriceAnItem price = (salesPrice != null && salesPrice.getQuantity() <= quantity) ?
+//				salesPrice : regularPrice;
+//
+//			// Now increment the total
+//			totalPrice = totalPrice += price.getPrice();
+//			
+//			// ...and decrement the quantity we're totalling
+//			quantity -= price.getQuantity();
+//		}
 
 		return totalPrice;
 	}
