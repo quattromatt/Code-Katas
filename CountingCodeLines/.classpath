@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src/main/java"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="var" path="M2_REPO/daxko/iris/junit/junit/4.9/junit-4.9.jar"/>
+	<classpathentry kind="var" path="M2_REPO/daxko/iris/spring/org.springframework.core/3.1.2/org.springframework.core-3.1.2.jar"/>
+	<classpathentry kind="var" path="M2_REPO/daxko/iris/spring/org.springframework.context/3.1.2/org.springframework.context-3.1.2.jar"/>
+	<classpathentry kind="var" path="M2_REPO/daxko/iris/spring/org.springframework.context.support/3.1.2/org.springframework.context.support-3.1.2.jar"/>
+	<classpathentry kind="var" path="M2_REPO/daxko/iris/spring/org.springframework.beans/3.1.2/org.springframework.beans-3.1.2.jar"/>
+	<classpathentry kind="lib" path="/Users/mdavis/Documents/Development/lib/spring-test-3.1.2.RELEASE.jar"/>
+	<classpathentry kind="var" path="M2_REPO/commons-logging/commons-logging/1.0.4/commons-logging-1.0.4.jar"/>
+	<classpathentry kind="var" path="M2_REPO/daxko/iris/spring/org.springframework.asm/3.1.2/org.springframework.asm-3.1.2.jar"/>
+	<classpathentry kind="var" path="M2_REPO/daxko/iris/spring/org.springframework.expression/3.1.2/org.springframework.expression-3.1.2.jar"/>
+	<classpathentry kind="var" path="M2_REPO/daxko/iris/cglib/cglib-nodep/2.1_3/cglib-nodep-2.1_3.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
