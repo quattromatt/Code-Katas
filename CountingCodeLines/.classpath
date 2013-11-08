@@ -12,5 +12,6 @@
 	<classpathentry kind="var" path="M2_REPO/daxko/iris/spring/org.springframework.asm/3.1.2/org.springframework.asm-3.1.2.jar"/>
 	<classpathentry kind="var" path="M2_REPO/daxko/iris/spring/org.springframework.expression/3.1.2/org.springframework.expression-3.1.2.jar"/>
 	<classpathentry kind="var" path="M2_REPO/daxko/iris/cglib/cglib-nodep/2.1_3/cglib-nodep-2.1_3.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/CodeKataUtils"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

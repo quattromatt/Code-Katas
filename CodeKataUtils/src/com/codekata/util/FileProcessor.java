@@ -10,12 +10,17 @@ public abstract class FileProcessor {
 
 	private File m_file;
 	
-	public FileProcessor(String filePath) {
-		m_file = new File(filePath);
+	public FileProcessor() {
+		
+	}
 
-		if (!m_file.exists()) {
-			throw new RuntimeException("File is missing!");
-		}
+	public FileProcessor(String filePath) {
+		setFile(filePath);
+	}
+	
+	public void processFile(String filePath) {
+		setFile(filePath);
+		processFile();
 	}
 	
 	public void processFile() {
@@ -42,6 +47,14 @@ public abstract class FileProcessor {
 			fis.close();
 		} catch (Exception e) {
 			e.printStackTrace();
+		}
+	}
+	
+	private void setFile(String filePath) {
+		m_file = new File(filePath);
+
+		if (!m_file.exists()) {
+			throw new RuntimeException("File " + filePath + " does not exist!");
 		}
 	}
 
