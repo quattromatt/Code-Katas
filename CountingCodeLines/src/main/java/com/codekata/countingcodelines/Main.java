@@ -7,9 +7,15 @@ public class Main {
 	private static final String SOURCE_FILE = "/Users/mdavis/Documents/Git Repos/Code-Katas/CountingCodeLines/src/main/java/com/codekata/countingcodelines/Main.java";
 	
 	public static void main(String[] args) {
-		System.out.println("Counting code lines!");
 		
-		Bootstrap.init();
+		/**
+		 * 
+		 * Print out that we're starting this //kata
+		 * 
+		 */
+		System.out.println("Counting code lines!"); /*
+		This is a crazy comment!
+		*/ Bootstrap.init(); // Boot the app
 		
 		// Get the application context
 		ApplicationContext context = Bootstrap.getContext();
