@@ -7,7 +7,7 @@ class Trigrams
 		puts 'Trigrams:'
 
 		processor = TextProcessor.new
-		text_map = processor.process_text('This is some random junk that is going to be trigramerated!')
+		text_map = processor.process_text('This is some random junk that is going to be trigramerated! This is another sentence.')
 
 		generator = TextGenerator.new
 		output = generator.generate_text(text_map)
