@@ -2,7 +2,7 @@ class TextProcessor
 
 	def process_text(text)
 
-		hash = Hash.new
+		text_map = Hash.new
 		last_word = nil
 		two_words_ago = nil
 		key = nil
@@ -16,10 +16,10 @@ class TextProcessor
 			if !last_word.nil? && !two_words_ago.nil?
 				key = two_words_ago + ' ' + last_word
 
-				existing_value = hash[key]
+				existing_value = text_map[key]
 				if existing_value.nil?
 					value = [word]
-					hash[key] = value
+					text_map[key] = value
 				else
 					existing_value.push(word)
 				end
@@ -32,13 +32,7 @@ class TextProcessor
 
 		end
 
-
-		hash.each do |key, value|
-
-			foo = (key + ' => ')
-			puts foo
-			puts value
-		end
+		text_map
 
 	end
 
