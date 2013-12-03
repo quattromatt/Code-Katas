@@ -7,15 +7,15 @@ class TextGenerator
 		next_word = ''
 
 		counter = 0
-		while counter < num_words_to_generate do
+		while counter < num_words_to_generate && !next_word.nil? do
 			counter = counter + 1
 
-			value = text_map[word_pair]
+			value = text_map[word_pair.downcase]
 
 			if value.nil?
 				next_word = nil
 			else
-				next_word = value[0]
+				next_word = pick_the_next_word(value)
 				sentence = sentence + ' ' + next_word
 				word_pair = get_next_word_pair(word_pair, next_word)
 			end
@@ -33,5 +33,10 @@ class TextGenerator
 		puts next_word_pair
 
 		return next_word_pair
+	end
+
+	def pick_the_next_word(words)
+		random_index = rand(words.length)
+		words[random_index]
 	end
 end

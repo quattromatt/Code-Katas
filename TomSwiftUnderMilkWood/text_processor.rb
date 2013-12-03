@@ -13,18 +13,18 @@ class TextProcessor
 		# Loop over each word
 		words.each do |word|
 
+			word = word.match('[^.,;"]+')[0].strip
+
 			if !last_word.nil? && !two_words_ago.nil?
 				key = two_words_ago + ' ' + last_word
 
 				existing_value = text_map[key]
 				if existing_value.nil?
 					value = [word]
-					text_map[key] = value
+					text_map[key.downcase] = value
 				else
 					existing_value.push(word)
 				end
-
-				# puts key
 			end
 
 			two_words_ago = last_word
