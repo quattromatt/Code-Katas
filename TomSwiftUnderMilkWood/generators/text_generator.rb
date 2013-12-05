@@ -30,8 +30,6 @@ class TextGenerator
 		words = word_pair.split
 		next_word_pair = words[1] + ' ' + word
 
-		puts next_word_pair
-
 		return next_word_pair
 	end
 

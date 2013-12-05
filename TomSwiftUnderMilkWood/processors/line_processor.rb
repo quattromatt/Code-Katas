@@ -1,14 +1,13 @@
-class TextProcessor
+class LineProcessor
 
-	def process_text(text)
+	def process(line, text_map)
 
-		text_map = Hash.new
 		last_word = nil
 		two_words_ago = nil
 		key = nil
 
 		# Get an array of the words in the text
-		words = text.split
+		words = line.split
 
 		# Loop over each word
 		words.each do |word|
@@ -35,5 +34,4 @@ class TextProcessor
 		text_map
 
 	end
-
 end
