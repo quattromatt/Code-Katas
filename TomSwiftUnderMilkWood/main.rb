@@ -6,16 +6,15 @@ class Trigrams
 
 	def run()
 
-		processor = RubyStringProcessor.new
-		#processor = FileProcessor.new
+		#processor = RubyStringProcessor.new
+		processor = FileProcessor.new
 		text_map = processor.process()
 
 		# print our text map to see what it looks like
 		# print_text_map(text_map)
-		puts(text_map['Old King'])
 
 		generator = TextGenerator.new
-		output = generator.generate_text(text_map, 'Old King', 200)
+		output = generator.generate_text(text_map, 'It was', 200)
 
 		formatted_output = ('Trigamerated output = "' + output + '"')
 		puts formatted_output

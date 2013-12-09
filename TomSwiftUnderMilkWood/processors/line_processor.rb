@@ -13,7 +13,7 @@ class LineProcessor
 		words.each do |word|
 
 			word = word.match('[^.,;"]+')[0].strip
-
+			
 			if !last_word.nil? && !two_words_ago.nil?
 				key = two_words_ago + ' ' + last_word
 

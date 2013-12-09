@@ -17,7 +17,7 @@ class FileProcessor
 	end
 
 	def process_line(line, text_map)
-		
+
 		@@line_processor.process(line, text_map)
 
 	end
