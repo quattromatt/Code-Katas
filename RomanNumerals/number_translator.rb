@@ -1,8 +1,21 @@
+require_relative 'number_slicer'
+
 class NumberTranslator
 
 	def translate(number)
-		puts 'the number is: '
-		puts number
+
+		number_slicer = NumberSlicer.new
+		number_slices = number_slicer.slice_number(number)
+
+		puts number_slices
+
+		# TODO - Create a common class that can translate thousands, hundreds, tens, and ones
+
+	end
+
+	def translate_old(number)
+		#puts 'the number is: '
+		#puts number
 
 		translated = ''
 
