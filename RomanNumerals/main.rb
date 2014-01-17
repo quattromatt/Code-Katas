@@ -8,7 +8,7 @@ class RomanNumerals
 		translator = NumberTranslator.new
 
 		# Define how high we want to count
-		count_to = 1001
+		count_to = 100
 		number_to_count = 1
 
 		# Count the numbers

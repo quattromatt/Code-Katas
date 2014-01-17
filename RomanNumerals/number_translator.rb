@@ -55,15 +55,44 @@ class NumberTranslator
 	end
 
 	def translate_hundreds(number)
-		'H'
+		translate_with_roman_numerals(number / 100, 'C', 'D', 'M')
 	end
 
 	def translate_tens(number)
-		'Te'
+		translate_with_roman_numerals(number / 10, 'X', 'L', 'C')
 	end
 
 	def translate_ones(number)
-		'O'
+		translate_with_roman_numerals(number, 'I', 'V', 'X')
 	end
 
+	def translate_with_roman_numerals(number, ones, fives, tens)
+		roman_numerals = '';
+
+		if number <= 3
+			while number > 0 do
+				roman_numerals << ones
+				number = number - 1
+			end
+		elsif number == 4
+			roman_numerals = ones + fives
+		elsif number == 5
+			roman_numerals = fives
+		elsif number < 9
+			roman_numerals = fives
+
+			number = number - 5
+			while number > 0 do
+				roman_numerals = roman_numerals + ones
+				number = number - 1
+			end
+		elsif number == 9
+			roman_numerals = ones + tens
+		else
+			roman_numerals = tens
+		end
+
+
+		roman_numerals
+	end
 end
