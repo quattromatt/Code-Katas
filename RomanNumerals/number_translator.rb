@@ -1,4 +1,5 @@
 require_relative 'number_slicer'
+require_relative 'number_place_translator'
 
 class NumberTranslator
 
@@ -10,6 +11,7 @@ class NumberTranslator
 		puts number_slices
 
 		# TODO - Create a common class that can translate thousands, hundreds, tens, and ones
+		ones_place_translator = NumberPlaceTranslator.new('I', 'V', 'X')
 
 	end
 
