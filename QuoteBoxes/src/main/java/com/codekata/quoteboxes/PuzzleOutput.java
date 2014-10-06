@@ -66,14 +66,14 @@ public class PuzzleOutput {
 		output.add("#puzzle_cells");
 		output.add("{");
 		output.add("font-family:\"Trebuchet MS\", Arial, Helvetica, sans-serif;");
-		output.add("width:100%;");
+		output.add("margin-right: 20px;");
 		output.add("border-collapse:collapse;");
+		output.add("float: left;");
 		output.add("}");
 		output.add("#puzzle_cells td, #puzzle_cells th"); 
 		output.add("{");
 		output.add("font-size:1.2em;");
 		output.add("border:1px solid #000000;");
-		output.add("padding:3px 7px 2px 7px;");
 		output.add("}");
 		output.add("#puzzle_cells td.inactive");
 		output.add("{");
@@ -93,7 +93,7 @@ public class PuzzleOutput {
 		List<String> letters = new ArrayList<>();
 		List<String> cells = new ArrayList<>();
 		
-		output.add("<div>" + m_quote.getPerson() + "</div><div><table id=\"puzzle_cells\">");
+		output.add("<div>" + m_quote.getPerson() + "</div><div><table id=\"puzzle_cells\" cellspacing=\"0\" cellpadding=\"0\">");
 		
 		// Print the letter columns
 		for (int rowNum = 0; rowNum < m_numRows; rowNum++) {
@@ -102,14 +102,14 @@ public class PuzzleOutput {
 			letters.add("<tr>");
 			for (PuzzleColumn column : m_columns) {
 				String letter = column.getLetterAt(rowNum);
-				letters.add("<td" + (" ".equals(letter) ? " class=\"shaded\"" : "") + ">" + letter + "</td>");
+				addPuzzleSquare(letters, " ".equals(letter) ? "shaded" : "white", " ".equals(letter) ? "&nbsp;" : letter);
 			}
 			letters.add("</tr>");
 			
 			// Add the cells
 			cells.add("<tr>");
 			for (PuzzleColumn column : m_columns) {
-				cells.add("<td" + (column.isLetterAt(rowNum) ? "" : " class=\"inactive\"") + ">&nbsp;</td>");
+				addPuzzleSquare(cells, column.isLetterAt(rowNum) ? "white" : "inactive", "&nbsp;");
 			}
 			cells.add("</tr>");
 		}
@@ -118,7 +118,13 @@ public class PuzzleOutput {
 		output.addAll(cells);
 		
 		output.add("</table></div>");
-		//output.add("<div>A: " + m_quote.getQuote() + "</div>");
+	}
+	
+	private void addPuzzleSquare(List<String> squares, String imageName, String contents) {
+		squares.add("<td><div style=\"position: relative\">");
+		squares.add("<img src=\"../resources/images/" + imageName + ".png\" style=\"width:2em; height:2em; border: 0; padding: 0\" />");
+		squares.add("<span style=\"position: absolute; top: 50%; left: 50%; margin-top: -0.6em; margin-left: -0.3em\">" + contents + "</span>");
+		squares.add("</div></td>");
 	}
 	
 	private void addFileFooter(List<String> output) {
