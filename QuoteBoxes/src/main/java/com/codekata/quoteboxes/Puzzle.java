@@ -34,18 +34,12 @@ public class Puzzle {
 
 	public void output() {
 		PuzzleOutput output = new PuzzleOutput(m_quote, m_columns);
-		System.out.println(output);
+		output.outputFile();
 	}
 	
 	private void initColumns() {
 		for (int i = 0; i < NUM_COLUMNS; i++) {
 			m_columns.add(new PuzzleColumn());
-		}
-	}
-	
-	public void debug() {
-		for (PuzzleColumn column : m_columns) {
-			System.out.println("debugging...");
 		}
 	}
 }

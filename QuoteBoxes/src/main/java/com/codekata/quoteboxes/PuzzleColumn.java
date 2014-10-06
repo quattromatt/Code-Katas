@@ -24,8 +24,8 @@ public class PuzzleColumn {
 		}
 	}
 	
-	public String getCellAt(int rowIndex) {
-		return m_cells.size() > rowIndex && m_cells.get(rowIndex) ? " " : "X";
+	public boolean isLetterAt(int rowIndex) {
+		return m_cells.size() > rowIndex && m_cells.get(rowIndex);
 	}
 	
 	public String getLetterAt(int rowIndex) {
