@@ -12,7 +12,6 @@ public class Main {
 		for (Quote quote : quoteProvider.getQuotes()) {
 			Puzzle puzzle = new Puzzle(quote);
 			puzzle.output();
-//			puzzle.debug();
 		}
 	}
 }

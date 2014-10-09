@@ -23,7 +23,14 @@ public class Quote {
 	}
 	
 	private String scrubPerson(String person) {
-		return person.substring(person.startsWith("-") ? 1 : 0).trim();
+		person = person.trim();
+		person = person.substring(person.startsWith("-") ? 1 : 0).trim();
+		
+		int index = person.indexOf('(');
+		
+		return index != -1 ?
+				person.substring(0, index - 1) :
+				person;
 	}
 	
 	private String scrubQuote(String quote) {

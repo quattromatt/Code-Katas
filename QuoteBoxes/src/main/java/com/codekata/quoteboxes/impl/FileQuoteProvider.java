@@ -25,6 +25,10 @@ public class FileQuoteProvider implements IProvideQuotes {
 		   Object[] filteredLines = lines.toArray();
 		   
 		   for (int i = 0; i < filteredLines.length; i += 2) {
+			   if (i + 1 == filteredLines.length) {
+				   continue;
+			   }
+			   
 			   String line1 = (String)filteredLines[i + 1];
 			   String line2 = (String)filteredLines[i];
 			   

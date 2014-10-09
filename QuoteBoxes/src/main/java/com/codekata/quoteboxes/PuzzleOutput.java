@@ -12,18 +12,14 @@ public class PuzzleOutput {
 
 	private static final String OUTPUT_DIR = "./output/";
 	
-	private Quote m_quote;
-	private List<PuzzleColumn> m_columns;
-	private int m_numRows = 0;
+	private Puzzle m_puzzle;
 	
-	public PuzzleOutput(Quote quote, List<PuzzleColumn> columns) {
-		m_quote = quote;
-		m_columns = columns;
-		m_numRows = m_columns.get(0).getSize();
+	public PuzzleOutput(Puzzle puzzle) {
+		m_puzzle = puzzle;
 	}
 	
 	public void outputFile() {
-		Path outputFile = Paths.get(OUTPUT_DIR, m_quote.getPerson().replace(" ", "") + ".html");
+		Path outputFile = Paths.get(OUTPUT_DIR, m_puzzle.getDifficulty() + " - " + m_puzzle.getQuote().getPerson().replace(" ", "") + ".html");
 		Charset charset = Charset.forName("utf-8");
 		List<String> output = new ArrayList<>();
 		
@@ -40,20 +36,20 @@ public class PuzzleOutput {
 	
 	public String toString() {
 		StringBuffer output = new StringBuffer();
-		output.append("== " + m_quote.getPerson() + " ==\n");
+		output.append("== " + m_puzzle.getQuote().getPerson() + " ==\n");
 		
 		// Print the letter columns
-		for (int rowNum = 0; rowNum < m_numRows; rowNum++) {
+		for (int rowNum = 0; rowNum < m_puzzle.getNumRows(); rowNum++) {
 			StringBuffer rowOutput = new StringBuffer();
 			
-			for (PuzzleColumn column : m_columns) {
+			for (PuzzleColumn column : m_puzzle.getColumns()) {
 				rowOutput.append(column.getLetterAt(rowNum));
 			}
 			
 			output.append(rowOutput.toString() + "\n");
 		}
 		
-		output.append("A: " + m_quote.getQuote() + "\n");
+		output.append("A: " + m_puzzle.getQuote().getQuote() + "\n");
 		
 		return output.toString();
 	}
@@ -93,14 +89,14 @@ public class PuzzleOutput {
 		List<String> letters = new ArrayList<>();
 		List<String> cells = new ArrayList<>();
 		
-		output.add("<div>" + m_quote.getPerson() + "</div><div><table id=\"puzzle_cells\" cellspacing=\"0\" cellpadding=\"0\">");
+		output.add("<div>" + m_puzzle.getQuote().getPerson() + "</div><div><table id=\"puzzle_cells\" cellspacing=\"0\" cellpadding=\"0\">");
 		
 		// Print the letter columns
-		for (int rowNum = 0; rowNum < m_numRows; rowNum++) {
+		for (int rowNum = 0; rowNum < m_puzzle.getNumRows(); rowNum++) {
 			
 			// Add the letters
 			letters.add("<tr>");
-			for (PuzzleColumn column : m_columns) {
+			for (PuzzleColumn column : m_puzzle.getColumns()) {
 				String letter = column.getLetterAt(rowNum);
 				addPuzzleSquare(letters, " ".equals(letter) ? "shaded" : "white", " ".equals(letter) ? "&nbsp;" : letter);
 			}
@@ -108,7 +104,7 @@ public class PuzzleOutput {
 			
 			// Add the cells
 			cells.add("<tr>");
-			for (PuzzleColumn column : m_columns) {
+			for (PuzzleColumn column : m_puzzle.getColumns()) {
 				addPuzzleSquare(cells, column.isLetterAt(rowNum) ? "white" : "inactive", "&nbsp;");
 			}
 			cells.add("</tr>");
@@ -122,7 +118,7 @@ public class PuzzleOutput {
 	
 	private void addPuzzleSquare(List<String> squares, String imageName, String contents) {
 		squares.add("<td><div style=\"position: relative\">");
-		squares.add("<img src=\"../resources/images/" + imageName + ".png\" style=\"width:2em; height:2em; border: 0; padding: 0\" />");
+		squares.add("<img src=\"../src/main/resources/images/" + imageName + ".png\" style=\"width:2em; height:2em; border: 0; padding: 0\" />");
 		squares.add("<span style=\"position: absolute; top: 50%; left: 50%; margin-top: -0.6em; margin-left: -0.3em\">" + contents + "</span>");
 		squares.add("</div></td>");
 	}

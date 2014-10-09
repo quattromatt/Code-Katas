@@ -6,7 +6,6 @@ import java.util.List;
 public class Puzzle {
 
 	private static final int NUM_COLUMNS = 26;
-	private static final int NUM_ROWS = 5;
 	
 	private Quote m_quote;
 	private List<PuzzleColumn> m_columns = new ArrayList<>();
@@ -23,6 +22,18 @@ public class Puzzle {
 		processSentence();
 	}
 	
+	public Quote getQuote() {
+		return m_quote;
+	}
+	
+	public List<PuzzleColumn> getColumns() {
+		return m_columns;
+	}
+	
+	public int getNumRows() {
+		return m_columns.get(0).getSize();
+	}
+	
 	private void processSentence() {
 		String sentence = m_quote.getQuote();
 		
@@ -31,9 +42,33 @@ public class Puzzle {
 			m_columns.get(i % NUM_COLUMNS).addCharacter(c + "");
 		}
 	}
+	
+	public int getDifficulty() {
+		int numRows = getNumRows();
+		
+		int difficulty = 0;
+		
+		switch (numRows) {
+			case 7 :
+				difficulty = 4;
+				break;
+			case 6 :
+				difficulty = 3;
+				break;
+			case 5:
+			case 4:
+				difficulty = 2;
+				break;
+			case 3 :
+				difficulty = 1;
+				break;
+		}
+		
+		return difficulty;
+	}
 
 	public void output() {
-		PuzzleOutput output = new PuzzleOutput(m_quote, m_columns);
+		PuzzleOutput output = new PuzzleOutput(this);
 		output.outputFile();
 	}
 	
