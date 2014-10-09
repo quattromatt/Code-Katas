@@ -1,57 +1,27 @@
-package com.codekata.quoteboxes;
+package com.codekata.quoteboxes.impl;
 
-import java.io.IOException;
-import java.nio.charset.Charset;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PuzzleOutput {
+import com.codekata.quoteboxes.IPuzzle;
+import com.codekata.quoteboxes.PuzzleColumn;
 
-	private static final String OUTPUT_DIR = "./output/";
+public class QuoteBoxPuzzleOutputter extends PuzzleOutputter {
+
+	private QuoteBoxPuzzle m_puzzle;
 	
-	private Puzzle m_puzzle;
-	
-	public PuzzleOutput(Puzzle puzzle) {
-		m_puzzle = puzzle;
-	}
-	
-	public void outputFile() {
-		Path outputFile = Paths.get(OUTPUT_DIR, m_puzzle.getDifficulty() + " - " + m_puzzle.getQuote().getPerson().replace(" ", "") + ".html");
-		Charset charset = Charset.forName("utf-8");
+	@Override
+	protected List<String> getPuzzleOutput(IPuzzle puzzle) {
+		
+		m_puzzle = (QuoteBoxPuzzle)puzzle;
+		
 		List<String> output = new ArrayList<>();
 		
 		addFileHeader(output);
 		addPuzzle(output);		
 		addFileFooter(output);
 		
-		try {
-			Files.write(outputFile, output, charset);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	public String toString() {
-		StringBuffer output = new StringBuffer();
-		output.append("== " + m_puzzle.getQuote().getPerson() + " ==\n");
-		
-		// Print the letter columns
-		for (int rowNum = 0; rowNum < m_puzzle.getNumRows(); rowNum++) {
-			StringBuffer rowOutput = new StringBuffer();
-			
-			for (PuzzleColumn column : m_puzzle.getColumns()) {
-				rowOutput.append(column.getLetterAt(rowNum));
-			}
-			
-			output.append(rowOutput.toString() + "\n");
-		}
-		
-		output.append("A: " + m_puzzle.getQuote().getQuote() + "\n");
-		
-		return output.toString();
+		return output;
 	}
 	
 	private void addFileHeader(List<String> output) {

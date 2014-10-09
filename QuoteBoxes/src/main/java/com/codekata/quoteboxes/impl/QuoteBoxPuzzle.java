@@ -1,16 +1,19 @@
-package com.codekata.quoteboxes;
+package com.codekata.quoteboxes.impl;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Puzzle {
+import com.codekata.quoteboxes.IPuzzle;
+import com.codekata.quoteboxes.PuzzleColumn;
+import com.codekata.quoteboxes.Quote;
 
-	private static final int NUM_COLUMNS = 26;
+public class QuoteBoxPuzzle implements IPuzzle {
+private static final int NUM_COLUMNS = 26;
 	
 	private Quote m_quote;
 	private List<PuzzleColumn> m_columns = new ArrayList<>();
 	
-	public Puzzle(Quote quote) {
+	public QuoteBoxPuzzle(Quote quote) {
 		
 		// Initialize the columns
 		initColumns();
@@ -20,6 +23,11 @@ public class Puzzle {
 		
 		// Process the sentence
 		processSentence();
+	}
+	
+	@Override
+	public String getBaseFileName() {
+		return getQuote().getPerson().replace(" ", "");
 	}
 	
 	public Quote getQuote() {
@@ -65,11 +73,6 @@ public class Puzzle {
 		}
 		
 		return difficulty;
-	}
-
-	public void output() {
-		PuzzleOutput output = new PuzzleOutput(this);
-		output.outputFile();
 	}
 	
 	private void initColumns() {

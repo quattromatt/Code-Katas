@@ -1,17 +1,11 @@
 package com.codekata.quoteboxes;
 
-import com.codekata.quoteboxes.impl.FileQuoteProvider;
+import com.codekata.quoteboxes.impl.QuoteBoxPuzzleGenerator;
 
 public class Main {
 
 	public static void main(String[] args) {
-		System.out.println("-- Quote Boxes --");
-		
-		IProvideQuotes quoteProvider = new FileQuoteProvider();
-		
-		for (Quote quote : quoteProvider.getQuotes()) {
-			Puzzle puzzle = new Puzzle(quote);
-			puzzle.output();
-		}
+		IGeneratePuzzles puzzleGenerator = new QuoteBoxPuzzleGenerator();
+		puzzleGenerator.generatePuzzles();
 	}
 }
